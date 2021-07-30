@@ -104,6 +104,7 @@ def test_raise_covid19_exception_should_pass() -> None:
 
 # --------------Test Logs  --------------
 import logging
+
 # logging levels:       debug  info  warning  error  critical
 # corresponding level:   10     20     30      40      50
 logger = logging.getLogger("CORONA_LOGS")
