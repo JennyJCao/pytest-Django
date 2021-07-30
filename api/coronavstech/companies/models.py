@@ -19,8 +19,5 @@ class Company(models.Model):
 
     # 为了代码可读性高，标记返回值为str；
     # 本身返回值是一个属性，不是str，将其format就好了
-    def __str__(self)->str:
+    def __str__(self) -> str:
         return f"{self.name}"
-
-
-
