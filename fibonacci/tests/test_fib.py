@@ -1,15 +1,16 @@
-from fibonacci.naive import fibonacci_naive
+from typing import Callable
+
 import pytest
-from my_decorator import my_parametrized
+from fibonacci.naive import fibonacci_naive
+from fibonacci.cached import fibonacci_cached
+from fibonacci.cached import fibonacci_lru_cached
 
 
+@pytest.mark.parametrize(
+    "fib_fun", [fibonacci_naive, fibonacci_cached, fibonacci_lru_cached]
+)
 @pytest.mark.parametrize("n,expected", [(0, 0), (1, 1), (2, 1), (20, 6765)])
-def test_naive(n: int, expected: int) -> None:
-    res = fibonacci_naive(n=n)
-    assert res == expected
-
-# create our own parametrize and use it to test naive
-@my_parametrized(identifiers = "n,expected", values = [(0, 0), (1, 1), (2, 1), (20, 6765)])
-def test_naive_with_my_decorator(n: int, expected: int) -> None:
-    res = fibonacci_naive(n=n)
+# Callable[[int], int]  receive an int and return an int
+def test_fibonacci(fib_fun: Callable[[int], int], n: int, expected: int) -> None:
+    res = fib_fun(n)
     assert res == expected
