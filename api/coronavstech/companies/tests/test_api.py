@@ -1,5 +1,4 @@
 import json
-from typing import List
 
 import pytest
 from django.urls import reverse
@@ -17,9 +16,6 @@ def test_zero_companies_should_return_empty_list(client) -> None:
     assert response.status_code == 200
     assert json.loads(response.content) == []
 
-@pytest.fixture
-def amazon() -> Company:
-    return Company.objects.create(name="amazon")
 
 
 def test_one_company_exists_should_succeed(client, amazon) -> None:
@@ -138,22 +134,6 @@ def test_logged_info_level(caplog) -> None:
 
 # --------------Learn about fixtures tests--------------
 
-@pytest.fixture
-def companies(request, company) -> List[Company]:
-    companies = []
-    names = request.param
-    for name in names:
-        companies.append(company(name=name))
-    return companies
-
-
-@pytest.fixture()
-def company(**kwargs):
-    def _company_factory(**kwargs) -> Company:
-        company_name = kwargs.pop("name", "Test Company INC")
-        return Company.objects.create(name=company_name, **kwargs)
-
-    return _company_factory
 
 
 @pytest.mark.parametrize(

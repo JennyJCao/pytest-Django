@@ -5,7 +5,6 @@ from fibonacci.dynamic import fibonacci_dynamic, fibonacci_dynamic_v2
 from fibonacci.naive import fibonacci_naive
 from fibonacci.cached import fibonacci_cached
 from fibonacci.cached import fibonacci_lru_cached
-from conftest import time_tracker
 
 
 @pytest.mark.parametrize(
