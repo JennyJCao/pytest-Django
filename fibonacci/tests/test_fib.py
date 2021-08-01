@@ -1,15 +1,8 @@
 from fibonacci.naive import fibonacci_naive
+import pytest
 
 
-def test_naive() -> None:
-    res = fibonacci_naive(n = 0)
-    assert res == 0
-
-    res = fibonacci_naive(n=1)
-    assert res == 1
-
-    res = fibonacci_naive(n=2)
-    assert res == 1
-
-    res = fibonacci_naive(n=20)
-    assert res == 6765
+@pytest.mark.parametrize("n,expected", [(0, 0), (1, 1), (2, 1), (20, 6765)])
+def test_naive(n: int, expected: int) -> None:
+    res = fibonacci_naive(n=n)
+    assert res == expected
