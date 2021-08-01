@@ -4,6 +4,7 @@ import pytest
 from fibonacci.naive import fibonacci_naive
 from fibonacci.cached import fibonacci_cached
 from fibonacci.cached import fibonacci_lru_cached
+from fixtures import time_tracker
 
 
 @pytest.mark.parametrize(
@@ -11,6 +12,6 @@ from fibonacci.cached import fibonacci_lru_cached
 )
 @pytest.mark.parametrize("n,expected", [(0, 0), (1, 1), (2, 1), (20, 6765)])
 # Callable[[int], int]  receive an int and return an int
-def test_fibonacci(fib_fun: Callable[[int], int], n: int, expected: int) -> None:
+def test_fibonacci(time_tracker, fib_fun: Callable[[int], int], n: int, expected: int) -> None:
     res = fib_fun(n)
     assert res == expected
