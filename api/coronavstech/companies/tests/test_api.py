@@ -17,7 +17,6 @@ def test_zero_companies_should_return_empty_list(client) -> None:
     assert json.loads(response.content) == []
 
 
-
 def test_one_company_exists_should_succeed(client, amazon) -> None:
     response = client.get(companies_url)
     response_content = json.loads(response.content)[0]
@@ -133,7 +132,6 @@ def test_logged_info_level(caplog) -> None:
 
 
 # --------------Learn about fixtures tests--------------
-
 
 
 @pytest.mark.parametrize(

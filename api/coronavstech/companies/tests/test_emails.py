@@ -43,6 +43,7 @@ def test_send_email_without_arguments_should_send_empty_email(client) -> None:
             recipient_list=["israeltechlayoffs@gmail.com"],
         )
 
+
 def test_send_email_with_get_verb_should_fail(client) -> None:
     response = client.get(path="/send-email")
     assert response.status_code == 405
